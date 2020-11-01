@@ -99,6 +99,8 @@ int main(int argc, char** argv) {
     redisAsyncCommand(pPUBSUB->actx, subCallback, pPUBSUB, "SUBSCRIBE testtopic");
     event_base_dispatch(base);
     
+    redisFree(pPUBSUB->ctx);
+    pPUBSUB->ctx = NULL;
     pPUBSUB->actx = NULL;
     free(pPUBSUB);
     pPUBSUB = NULL;
